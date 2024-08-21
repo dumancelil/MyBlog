@@ -1,14 +1,9 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
+import ReactDOM from 'react-dom/client'; // createRoot burada import ediliyor
 import './index.css';
 import App from './App';
-import './bootstrap.min.css'
+import './bootstrap.min.css';
 
+// createRoot kullanımı
 const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
-
-
+root.render(<App />);

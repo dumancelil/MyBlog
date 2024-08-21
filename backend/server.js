@@ -1,19 +1,19 @@
 const express = require ("express");
-const cors = require ("cors");
+const cors = require ('cors');
 const mongoose = require ("mongoose");//for mongoDB database
 const dotenv = require("dotenv"); // for dotenv infos
 dotenv.config();// for backend-database connection
-const userRouter= require ("./routers/router");
+const routes = require ("./routers/router");
 
 const app = express();
-
-app.use(express.json());
-app.use("/users", userRouter);
-
 
 app.use (cors({
     origin: "*",
 }))
+app.use(express.json());
+app.use("/", routes);
+
+
 
 app.listen (4242, ()=>{
     //connect to database

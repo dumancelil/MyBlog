@@ -39,4 +39,27 @@ const getUserBlogs = async(req,res) => {
             }
 }
 
-module.exports = {showAllBlogs, createBlog,deleteBlog, getUserBlogs}
+const updateUserBlogs = async(req,res) => {
+    try {
+        const {id} = req.params.id
+        const updates = req.body
+        const updatedBlog = await Blog.findByIdAndUpdate(id, updates , {new: true})
+        res.json(updatedBlog)
+        } catch (error) {
+            res.status(500).json({ message: error.message })
+            }
+            
+}
+
+const getBlogPost = async(req,res) => {
+    try {
+        const id = req.params.id
+        const blogPost = await Blog.findById(id)
+        res.json(blogPost)
+    }catch (error) {
+        console.error(error)
+        res.status(500).json({msg: 'server error'})
+    }
+}
+
+module.exports = {showAllBlogs, createBlog,deleteBlog, getUserBlogs, updateUserBlogs ,getBlogPost}

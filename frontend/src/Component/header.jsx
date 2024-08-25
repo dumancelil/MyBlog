@@ -1,10 +1,14 @@
 import React, { useEffect } from "react";
 import { Navbar, Nav, Container, Button, NavDropdown } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 
 const Header = () => {
 const token = !!localStorage.getItem('token')
 console.log('this is toke', token)
+const navigate = useNavigate()
 
   return (
     <Navbar className="py-4" bg="primary" expand="lg">
@@ -18,14 +22,16 @@ console.log('this is toke', token)
           <Nav className="me-auto">
             <Nav.Link as={Link} to='/' className="text-white">All Blogs</Nav.Link>
             <Nav.Link as={Link} to='/myblogs'  className="text-white">My Blogs</Nav.Link>
-            <Nav.Link className="text-white">Create New Blog</Nav.Link>
+            <Nav.Link as={Link} to='/newblog'  className="text-white">Create new Blog</Nav.Link>
           </Nav>
         </Navbar.Collapse>
           <Button
             variant="outline-light"
             onClick={() => {
               localStorage.removeItem("token");
-              window.location.reload()
+              toast.success("Bye Bye", {
+                onClose: () => navigate("/"),
+              });
             }}
           >
             Log Out
@@ -51,7 +57,9 @@ console.log('this is toke', token)
          </>
         )}
       </Container>
+      <ToastContainer/>
     </Navbar>
+  
   );
 };
 

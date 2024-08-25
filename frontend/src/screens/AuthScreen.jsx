@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { Container, Form, Button, Row, Col, Alert } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 import backend from "../axios/backend";
 
@@ -14,7 +16,9 @@ const AuthScreen = () => {
     try {
       const response = await axios.post(`${backend}/signin`, { email, password })
       localStorage.setItem('token', response.data.token)
-      navigate('/')
+      toast.success("Login successfull", {
+        onClose: () => navigate("/"),
+      });
       window.location.reload()
       } catch (error) {
         console.error(error)
@@ -43,6 +47,7 @@ const AuthScreen = () => {
       
   </Form>
 </Container>
+<ToastContainer/>
 </>
   )
 };

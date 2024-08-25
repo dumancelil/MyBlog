@@ -6,6 +6,8 @@ import HomeScreen from "./screens/HomeScreen";
 import AuthScreen from "./screens/AuthScreen";
 import SignUpScreen from "./screens/SignUpScreen";
 import Myblogs from '../src/Component/Myblogs'
+import NewBlog from './Component/NewBlog'
+import UpdateBlog from './Component/UpdateBlog'
 import { useState } from "react";
 
 function App() {
@@ -18,6 +20,8 @@ const isLoggedIn = !!localStorage.getItem('token')
         <Routes>
         <Route path="/" element={<HomeScreen />} />
         <Route path="/myblogs" element={<Myblogs />} />
+        <Route path="/newblog" element={<NewBlog />} />
+        <Route path="/updateblog/:id" element={<UpdateBlog />} />
         </Routes>
         </>
       ): (
